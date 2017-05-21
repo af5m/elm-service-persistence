@@ -27,4 +27,5 @@ public interface TableConstants {
     String SEQUENCE_ENTITY = "base_entity_seq";
     
     String T_ORGANIZATION = "organization";
+    String T_SOURCE = "source";
 }

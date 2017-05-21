@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.af5m.elm.model.Organization;
 import com.af5m.elm.service.persistence.exception.BadRequestException;
-import com.af5m.elm.service.persistence.model.OrganizationCreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponse;
 import com.af5m.elm.service.persistence.service.OrganizationService;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
@@ -45,7 +45,7 @@ public class OrganizationRestApiImpl implements OrganizationRestApi {
 	 * @see com.af5m.elm.service.persistence.controller.OrganizationRestApi#getOrganizations(java.lang.String, java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public PagedResult<Organization> getOrganizations(@RequestParam(name = PARAMETER_NAME, required = false) String name, @RequestParam(name = PARAMETER_PAGINATION_OFFSET, defaultValue = DEFAULT_OFFSET) Integer offset, @RequestParam(name = PARAMETER_PAGINATION_LIMIT, defaultValue = DEFAULT_LIMIT) Integer limit) {
+	public PagedResult<Organization> getOrganizations(@RequestParam(name = PARAMETER_NAME, required = false) String name, @RequestParam(name = OFFSET, defaultValue = DEFAULT_OFFSET) Integer offset, @RequestParam(name = LIMIT, defaultValue = DEFAULT_LIMIT) Integer limit) {
         logger.trace("entered getOrganizations()");
         PagedResult<Organization> pagedResult;
         if (!StringUtils.isEmpty(name)) {
@@ -62,14 +62,14 @@ public class OrganizationRestApiImpl implements OrganizationRestApi {
 	 * @see com.af5m.elm.service.persistence.controller.OrganizationRestApi#createOrganization(com.af5m.elm.model.Organization)
 	 */
 	@Override
-	public OrganizationCreatedResponse createOrganization(@RequestBody Organization organization) {
+	public CreatedResponse createOrganization(@RequestBody Organization organization) {
         logger.trace("entered createNetwork(Network network)");
         if (null == organization ) {
             BadRequestException badRequestException = new BadRequestException();
             throw badRequestException;
         }
 		organizationService.save(organization);
-        OrganizationCreatedResponse organizationCreatedResponse = new OrganizationCreatedResponse();
+        CreatedResponse organizationCreatedResponse = new CreatedResponse();
         organizationCreatedResponse.setUuid(organization.getUuid());
         logger.trace("exiting createOrganization(Organization organization) with uuid: {} ", organization.getUuid());
         return organizationCreatedResponse;

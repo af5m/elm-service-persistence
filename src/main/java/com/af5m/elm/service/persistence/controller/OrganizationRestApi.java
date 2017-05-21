@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.af5m.elm.model.Organization;
-import com.af5m.elm.service.persistence.model.OrganizationCreatedResponse;
-import com.dell.isg.smi.commons.elm.model.CreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponse;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
 import io.swagger.annotations.Api;
@@ -30,23 +29,23 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/1.0/organizations")
 public interface OrganizationRestApi {
 	
-    String PARAMETER_PAGINATION_OFFSET = "offset";
-    String PARAMETER_PAGINATION_LIMIT = "limit";
-    String PARAMETER_UUID = "uuid";
-    String PARAMETER_NAME = "name";
+    static final String OFFSET = "offset";
+    static final String LIMIT = "limit";
+    static final String PARAMETER_UUID = "uuid";
+    static final String PARAMETER_NAME = "name";
     
-    String PATH_URI_UUID = "/{uuid}";
-    String PATH_URI_ALL_ORGANIZATIONS = "";
+    static final String PATH_URI_UUID = "/{uuid}";
+    static final String PATH_URI_ALL_ORGANIZATIONS = "";
     
-    String ROLE_READ = "ROLE_READ";
-    String ROLE_WRITE = "ROLE_WRITE";
-    String ROLE_CONFIGURE_ORGANIZATION = "ROLE_CONFIGURE_ORGANIZATION";
+    static final String ROLE_READ = "ROLE_READ";
+    static final String ROLE_WRITE = "ROLE_WRITE";
+    static final String ROLE_CONFIGURE_ORGANIZATION = "ROLE_CONFIGURE_ORGANIZATION";
 
-    String DEFAULT_OFFSET = "0";
-    String DEFAULT_LIMIT = "10";
-    String DEFAULT_STATE = "ALL";
-    String DEFAULT_CONTENT_TYPE = "application/json";
-	
+    
+    static final String DEFAULT_OFFSET = "0";
+    static final String DEFAULT_LIMIT = "10";
+    static final String DEFAULT_STATE = "ALL";
+    static final String DEFAULT_CONTENT_TYPE = "application/json";
 
     /**
      * Gets an organization by guid.
@@ -71,7 +70,7 @@ public interface OrganizationRestApi {
     @ApiOperation(value = "Get organizations", nickname = "Get organizations", notes = "Gets a paged result of organizations using the optional pagination offset and limit provided. " + "The default limit is " + DEFAULT_LIMIT + " records. An optional querystring parameter of '" + PARAMETER_NAME + "' is available to find a organization by name.", response = PagedResult.class)
     @RequestMapping(method = RequestMethod.GET, value = PATH_URI_ALL_ORGANIZATIONS, produces = MediaType.APPLICATION_JSON_VALUE)
     @RolesAllowed({ ROLE_READ })
-	public abstract PagedResult<Organization> getOrganizations(@RequestParam(name = PARAMETER_NAME, required = false) String name, @RequestParam(name = PARAMETER_PAGINATION_OFFSET, defaultValue = DEFAULT_OFFSET) Integer offset, @RequestParam(name = PARAMETER_PAGINATION_LIMIT, defaultValue = DEFAULT_LIMIT) Integer limit); 
+	public abstract PagedResult<Organization> getOrganizations(@RequestParam(name = PARAMETER_NAME, required = false) String name, @RequestParam(name = OFFSET, defaultValue = DEFAULT_OFFSET) Integer offset, @RequestParam(name = LIMIT, defaultValue = DEFAULT_LIMIT) Integer limit); 
 	
 	
     /**
@@ -84,7 +83,7 @@ public interface OrganizationRestApi {
     @RequestMapping(method = RequestMethod.POST)
     @RolesAllowed({ ROLE_CONFIGURE_ORGANIZATION })
     @ResponseStatus(HttpStatus.CREATED)
-    public abstract OrganizationCreatedResponse createOrganization(@RequestBody Organization organization);
+    public abstract CreatedResponse createOrganization(@RequestBody Organization organization);
     
     
     /**

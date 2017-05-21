@@ -67,15 +67,15 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
 
         // transform the entities to model (dto) objects
-        List<Organization> networksList = new ArrayList<>();
+        List<Organization> organizationList = new ArrayList<>();
         for (OrganizationEntity organizationEntity : organizationEntityList) {
-        	Organization network = convertToModel(organizationEntity);
-            networksList.add(network);
+        	Organization organization = convertToModel(organizationEntity);
+            organizationList.add(organization);
         }
         long total = organizationRepository.count();
 
         // put the model objects into the paged result
-        final PagedResult<Organization> pagedResult = PaginationUtils.paginate(networksList, total, offset, limit);
+        final PagedResult<Organization> pagedResult = PaginationUtils.paginate(organizationList, total, offset, limit);
         logger.trace("Exiting OrganizationServiceImpl getAll");
         return pagedResult;
 	}
