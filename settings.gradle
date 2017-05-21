@@ -1,0 +1,2 @@
+include ':elm-lib-model'
+project(':elm-lib-model').projectDir = new File(settingsDir, '../elm-lib-model')
