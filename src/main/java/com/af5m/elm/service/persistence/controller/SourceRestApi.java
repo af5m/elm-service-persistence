@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.af5m.elm.model.Source;
-import com.af5m.elm.service.persistence.model.CreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponseDto;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
 import io.swagger.annotations.Api;
@@ -79,11 +79,11 @@ public interface SourceRestApi {
      * @param source the source
      * @return the created response
      */
-    @ApiOperation(value = "Create source", nickname = "Create source", notes = "Creates a source", response = CreatedResponse.class)
+    @ApiOperation(value = "Create source", nickname = "Create source", notes = "Creates a source", response = CreatedResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
     @RolesAllowed({ ROLE_CONFIGURE_SOURCE })
     @ResponseStatus(HttpStatus.CREATED)
-    public abstract CreatedResponse createSource(@RequestBody Source source);
+    public abstract CreatedResponseDto createSource(@RequestBody Source source);
     
     
     /**

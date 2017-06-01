@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.af5m.elm.model.Organization;
 import com.af5m.elm.model.Source;
-import com.af5m.elm.service.persistence.model.CreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponseDto;
 import com.af5m.elm.service.persistence.service.SourceService;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
@@ -47,7 +47,7 @@ public class SourceRestApiImpl implements SourceRestApi {
 	}
 
 	@Override
-	public CreatedResponse createSource(Source source) {
+	public CreatedResponseDto createSource(Source source) {
 		// TODO Auto-generated method stub
 		return null;
 	}

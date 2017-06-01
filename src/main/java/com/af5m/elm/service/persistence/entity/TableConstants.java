@@ -28,4 +28,8 @@ public interface TableConstants {
     
     String T_ORGANIZATION = "organization";
     String T_SOURCE = "source";
+    String T_LOCALE = "locale";
+    String T_LOCALIZED_MESSAGE_ELEMENT = "localized_message_element";
+    String T_MESSAGE_TYPE = "message_type";
+    String T_MESSAGE_ELEMENT_TYPE = "message_element_type";
 }

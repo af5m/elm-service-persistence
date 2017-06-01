@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.af5m.elm.model.Organization;
 import com.af5m.elm.service.persistence.exception.BadRequestException;
-import com.af5m.elm.service.persistence.model.CreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponseDto;
 import com.af5m.elm.service.persistence.service.OrganizationService;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
@@ -62,14 +62,14 @@ public class OrganizationRestApiImpl implements OrganizationRestApi {
 	 * @see com.af5m.elm.service.persistence.controller.OrganizationRestApi#createOrganization(com.af5m.elm.model.Organization)
 	 */
 	@Override
-	public CreatedResponse createOrganization(@RequestBody Organization organization) {
+	public CreatedResponseDto createOrganization(@RequestBody Organization organization) {
         logger.trace("entered createNetwork(Network network)");
         if (null == organization ) {
             BadRequestException badRequestException = new BadRequestException();
             throw badRequestException;
         }
 		organizationService.save(organization);
-        CreatedResponse organizationCreatedResponse = new CreatedResponse();
+        CreatedResponseDto organizationCreatedResponse = new CreatedResponseDto();
         organizationCreatedResponse.setUuid(organization.getUuid());
         logger.trace("exiting createOrganization(Organization organization) with uuid: {} ", organization.getUuid());
         return organizationCreatedResponse;

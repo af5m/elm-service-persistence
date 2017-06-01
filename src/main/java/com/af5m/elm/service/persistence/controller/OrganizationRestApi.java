@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.af5m.elm.model.Organization;
-import com.af5m.elm.service.persistence.model.CreatedResponse;
+import com.af5m.elm.service.persistence.model.CreatedResponseDto;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
 
 import io.swagger.annotations.Api;
@@ -79,11 +79,11 @@ public interface OrganizationRestApi {
      * @param organization the organization
      * @return the organization created response
      */
-    @ApiOperation(value = "Create organization", nickname = "Create organization", notes = "Creates an organization", response = CreatedResponse.class)
+    @ApiOperation(value = "Create organization", nickname = "Create organization", notes = "Creates an organization", response = CreatedResponseDto.class)
     @RequestMapping(method = RequestMethod.POST)
     @RolesAllowed({ ROLE_CONFIGURE_ORGANIZATION })
     @ResponseStatus(HttpStatus.CREATED)
-    public abstract CreatedResponse createOrganization(@RequestBody Organization organization);
+    public abstract CreatedResponseDto createOrganization(@RequestBody Organization organization);
     
     
     /**

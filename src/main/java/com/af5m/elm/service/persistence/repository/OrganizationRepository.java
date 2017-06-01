@@ -8,6 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.af5m.elm.service.persistence.entity.OrganizationEntity;
 
+/**
+ * The Interface OrganizationRepository.
+ */
 public interface OrganizationRepository extends CrudRepository<OrganizationEntity, UUID> {
 	
 	/**

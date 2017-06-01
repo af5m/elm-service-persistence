@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * The Class OrganizationCreatedResponse.
  */
-public class CreatedResponse {
+public class CreatedResponseDto {
 	private UUID uuid;
 
 	/**

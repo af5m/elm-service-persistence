@@ -8,6 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.af5m.elm.service.persistence.entity.SourceEntity;
 
+/**
+ * The Interface SourceRepository.
+ */
 public interface SourceRepository extends CrudRepository<SourceEntity, UUID> {
 	
 	/**
