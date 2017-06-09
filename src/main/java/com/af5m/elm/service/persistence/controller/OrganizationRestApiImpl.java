@@ -33,7 +33,7 @@ public class OrganizationRestApiImpl implements OrganizationRestApi {
 	 * @see com.af5m.elm.service.persistence.controller.OrganizationRestApi#getOrganization(java.util.UUID)
 	 */
 	@Override
-	public Organization getOrganization(UUID uuid) {
+	public Organization getOrganization(@PathVariable(PARAMETER_UUID) UUID uuid) {
         logger.trace("Entered getOrganization() with uuid: {}", uuid);
         Organization organization = organizationService.get(uuid);
         logger.trace("Exiting getNetwork() with networkId: {}", uuid);

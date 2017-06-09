@@ -14,8 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import com.af5m.elm.model.Source;
+import com.af5m.elm.service.persistence.entity.OrganizationEntity;
 import com.af5m.elm.service.persistence.entity.SourceEntity;
 import com.af5m.elm.service.persistence.exception.BadRequestException;
+import com.af5m.elm.service.persistence.repository.OrganizationRepository;
 import com.af5m.elm.service.persistence.repository.SourceRepository;
 import com.dell.isg.smi.commons.utilities.PaginationUtils;
 import com.dell.isg.smi.commons.utilities.model.PagedResult;
@@ -31,6 +33,9 @@ public class SourceServiceImpl implements SourceService {
     SourceRepository sourceRepository;
     
     @Autowired
+    OrganizationRepository organizationRepository;
+    
+    @Autowired
     private ModelMapper modelMapper;
     
 	/* (non-Javadoc)
@@ -38,8 +43,12 @@ public class SourceServiceImpl implements SourceService {
 	 */
 	@Override
 	public Source get(UUID uuid) {
-		// TODO Auto-generated method stub
-		return null;
+		SourceEntity sourceEntity = sourceRepository.findByUuid(uuid);
+		Source source = convertToModel(sourceEntity);
+		if(null != sourceEntity.getOrganizationEntity()){
+			source.setOrganizationUuid(sourceEntity.getOrganizationEntity().getUuid());
+		}
+		return source;
 	}
 
 	/* (non-Javadoc)
@@ -94,7 +103,39 @@ public class SourceServiceImpl implements SourceService {
 	 */
 	@Override
 	public void save(Source source) {
-		// TODO Auto-generated method stub
+		logger.trace("Entering SourceServiceImpl save");
+        if(null == source ){
+        	return;
+        }
+        
+        
+        // new up or find the existing entity object
+        SourceEntity sourceEntity = null;
+        if(null == source.getUuid()){
+        	sourceEntity = new SourceEntity();
+        }
+        else{
+        	 sourceEntity = sourceRepository.findByUuid( source.getUuid() );
+        }
+        
+        // find the organization entity
+        OrganizationEntity organizationEntity = null;
+    	if(null != source.getOrganizationUuid()){
+    		organizationEntity = organizationRepository.findByUuid(source.getOrganizationUuid());
+    	}
+    	sourceEntity.setOrganizationEntity(organizationEntity);
+        
+        
+        // transform the model to an entity object
+        convertToEntityByRef(source, sourceEntity);
+        
+        // save the entity
+        sourceRepository.save(sourceEntity);
+        
+        // set the uuid back into the model object byref
+        source.setUuid(sourceEntity.getUuid());
+        
+        logger.trace("Exiting SourceServiceImpl save");
 
 	}
 
@@ -103,8 +144,7 @@ public class SourceServiceImpl implements SourceService {
 	 */
 	@Override
 	public void delete(UUID uuid) {
-		// TODO Auto-generated method stub
-
+		sourceRepository.delete(uuid);
 	}
 	
 	private Source convertToModel(SourceEntity sourceEntity){

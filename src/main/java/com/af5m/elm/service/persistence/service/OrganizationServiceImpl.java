@@ -38,8 +38,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 	 */
 	@Override
 	public Organization get(UUID guid) {
-		// TODO Auto-generated method stub
-		return null;
+		OrganizationEntity organizationEntity = organizationRepository.findByUuid(guid);
+		return convertToModel(organizationEntity);
 	}
 
 	/* (non-Javadoc)

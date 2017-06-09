@@ -101,12 +101,12 @@ public interface SourceRestApi {
     /**
      * Delete source.
      *
-     * @param guid the guid
+     * @param guid the uuid
      */
     @ApiOperation(value = "Delete source", nickname = "Delete source", notes = "Deletes the soure for the given " + PARAMETER_UUID + " path variable")
     @RequestMapping(method = RequestMethod.DELETE, path = PATH_URI_UUID)
     @RolesAllowed({ ROLE_CONFIGURE_SOURCE })
     @ResponseStatus(HttpStatus.NO_CONTENT)
-	public abstract void deleteSource(@PathVariable(PARAMETER_UUID) UUID guid);
+	public abstract void deleteSource(@PathVariable(PARAMETER_UUID) UUID uuid);
 
 }

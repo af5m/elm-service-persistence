@@ -12,8 +12,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.af5m.elm.model.Organization;
-
 @Entity
 @Table(name = TableConstants.T_SOURCE)
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,7 +27,7 @@ public class SourceEntity extends BaseEntity {
 	
     @ManyToOne(targetEntity = OrganizationEntity.class, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
-	private Organization organization;
+	private OrganizationEntity organizationEntity;
 
 	public String getName() {
 		return name;
@@ -47,12 +45,12 @@ public class SourceEntity extends BaseEntity {
 		this.sourceType = sourceType;
 	}
 
-	public Organization getOrganization() {
-		return organization;
+	public OrganizationEntity getOrganizationEntity() {
+		return organizationEntity;
 	}
 
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
+	public void setOrganizationEntity(OrganizationEntity organizationEntity) {
+		this.organizationEntity = organizationEntity;
 	}
 
 }
