@@ -5,12 +5,12 @@ import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.af5m.elm.service.persistence.entity.MessageTypeEntity;
+import com.af5m.elm.service.persistence.entity.ElementEntity;
 
 /**
- * The Interface MessageTypeRepository.
+ * The Interface ElementRepository.
  */
 @Repository
-public interface MessageTypeRepository extends CrudRepository<MessageTypeEntity, UUID> {
+public interface ElementRepository extends CrudRepository<ElementEntity, UUID> {
 
 }

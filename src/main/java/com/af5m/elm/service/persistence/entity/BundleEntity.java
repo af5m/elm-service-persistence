@@ -13,10 +13,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Table(name = TableConstants.T_SOURCE)
+@Table(name = TableConstants.T_BUNDLE)
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = TableConstants.C_UUID, referencedColumnName = TableConstants.BASE_ENTITY_ID)
-public class SourceEntity extends BaseEntity {
+public class BundleEntity extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name="name")

@@ -7,7 +7,7 @@ import io.swagger.annotations.Api;
 
 @RestController
 @Api(value = "/api/1.0/localization/locales")
-@RequestMapping("/api/1.0/localization/locales")
+@RequestMapping("/api/1.0/locales")
 public interface LocaleRestApi {
 
 }

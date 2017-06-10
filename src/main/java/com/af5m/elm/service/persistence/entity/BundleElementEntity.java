@@ -11,18 +11,19 @@ import javax.persistence.Table;
 
 /**
  * The Class MessageElementTypeEntity.
+ * Possible values include 
  */
 @Entity
-@Table(name = TableConstants.T_MESSAGE_ELEMENT_TYPE)
+@Table(name = TableConstants.T_BUNDLE_ELEMENT)
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = TableConstants.C_UUID, referencedColumnName = TableConstants.BASE_ENTITY_ID)
-public class MessageElementTypeEntity extends BaseEntity {
+public class BundleElementEntity extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
-    @ManyToOne(targetEntity = MessageTypeEntity.class, fetch = FetchType.EAGER)
-	private MessageTypeEntity messageTypeEntity;
-	
+    @ManyToOne(targetEntity = ElementEntity.class, fetch = FetchType.EAGER)
+	private ElementEntity messageTypeEntity; 
+    
 	@Column(name="name")
 	private String name;
 	
@@ -31,7 +32,7 @@ public class MessageElementTypeEntity extends BaseEntity {
 	 *
 	 * @return the message type entity
 	 */
-	public MessageTypeEntity getMessageTypeEntity() {
+	public ElementEntity getMessageTypeEntity() {
 		return this.messageTypeEntity;
 	}
 	
@@ -40,7 +41,7 @@ public class MessageElementTypeEntity extends BaseEntity {
 	 *
 	 * @param messageType the new message type entity
 	 */
-	public void setMessageTypeEntity(MessageTypeEntity messageTypeEntity) {
+	public void setMessageTypeEntity(ElementEntity messageTypeEntity) {
 		this.messageTypeEntity = messageTypeEntity;
 	}
 	

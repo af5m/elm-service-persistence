@@ -27,9 +27,10 @@ public interface TableConstants {
     String SEQUENCE_ENTITY = "base_entity_seq";
     
     String T_ORGANIZATION = "organization";
-    String T_SOURCE = "source";
+    String T_BUNDLE = "bundle";
     String T_LOCALE = "locale";
-    String T_LOCALIZED_MESSAGE_ELEMENT = "localized_message_element";
-    String T_MESSAGE_TYPE = "message_type";
-    String T_MESSAGE_ELEMENT_TYPE = "message_element_type";
+    String T_LOCALIZED_RESOURCE_ELEMENT = "localized_resource_element";
+    String T_ELEMENT = "element";
+    String T_BUNDLE_ELEMENT = "bundle_element";
+    String T_RESOURCE = "resource";
 }

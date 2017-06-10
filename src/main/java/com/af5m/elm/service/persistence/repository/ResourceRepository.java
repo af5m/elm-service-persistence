@@ -5,13 +5,15 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.af5m.elm.service.persistence.entity.SourceEntity;
+import com.af5m.elm.service.persistence.entity.ResourceEntity;
 
 /**
- * The Interface SourceRepository.
+ * The Interface ResourceRepository.
  */
-public interface SourceRepository extends CrudRepository<SourceEntity, UUID> {
+@Repository
+public interface ResourceRepository extends CrudRepository<ResourceEntity, UUID> {
 	
 	/**
 	 * Find all.
@@ -19,7 +21,7 @@ public interface SourceRepository extends CrudRepository<SourceEntity, UUID> {
 	 * @param pagable the pagable
 	 * @return the page
 	 */
-	Page<SourceEntity> findAll(Pageable pagable);
+	Page<ResourceEntity> findAll(Pageable pagable);
 	
 	
 	/**
@@ -29,15 +31,15 @@ public interface SourceRepository extends CrudRepository<SourceEntity, UUID> {
 	 * @param pageable the pageable
 	 * @return the page
 	 */
-	Page<SourceEntity> findByName(String name, Pageable pageable);
+	Page<ResourceEntity> findByName(String name, Pageable pageable);
 	
 	
 	/**
 	 * Find by uuid.
 	 *
 	 * @param uuid the uuid
-	 * @return the SourceEntity
+	 * @return the ResourceEntity
 	 */
-	SourceEntity findByUuid(UUID uuid);
+	ResourceEntity findByUuid(UUID uuid);
 
 }

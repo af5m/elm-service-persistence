@@ -10,13 +10,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
- * The Class LocalizedMessageElementEntity.
+ * The Class LocalizedResourceElementEntity.
  */
 @Entity
-@Table(name = TableConstants.T_LOCALIZED_MESSAGE_ELEMENT)
+@Table(name = TableConstants.T_LOCALIZED_RESOURCE_ELEMENT)
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = TableConstants.C_UUID, referencedColumnName = TableConstants.BASE_ENTITY_ID)
-public class LocalizedMessageElementEntity extends BaseEntity {
+public class LocalizedResourceElementEntity extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -26,8 +26,11 @@ public class LocalizedMessageElementEntity extends BaseEntity {
     @ManyToOne(targetEntity = LocaleEntity.class, fetch = FetchType.EAGER)
 	private LocaleEntity locale;	
     
-    @ManyToOne(targetEntity = MessageElementTypeEntity.class, fetch = FetchType.EAGER)
-	private MessageElementTypeEntity MessageElementType;
+    @ManyToOne(targetEntity = ResourceEntity.class, fetch = FetchType.EAGER)
+	private ResourceEntity resourceEntity;	
+    
+    @ManyToOne(targetEntity = ElementEntity.class, fetch = FetchType.EAGER)
+	private ElementEntity elementEntity;
 	
 	/**
 	 * Gets the message text.
@@ -64,24 +67,41 @@ public class LocalizedMessageElementEntity extends BaseEntity {
 	public void setLocale(LocaleEntity locale) {
 		this.locale = locale;
 	}
-	
-	/**
-	 * Gets the message element type.
-	 *
-	 * @return the message element type
-	 */
-	public MessageElementTypeEntity getMessageElementType() {
-		return MessageElementType;
-	}
-	
-	/**
-	 * Sets the message element type.
-	 *
-	 * @param messageElementType the new message element type
-	 */
-	public void setMessageElementType(MessageElementTypeEntity messageElementType) {
-		MessageElementType = messageElementType;
-	}
-	
 
+	/**
+	 * Gets the resource entity.
+	 *
+	 * @return the resource entity
+	 */
+	public ResourceEntity getResourceEntity() {
+		return resourceEntity;
+	}
+
+	/**
+	 * Sets the resource entity.
+	 *
+	 * @param resourceEntity the new resource entity
+	 */
+	public void setResourceEntity(ResourceEntity resourceEntity) {
+		this.resourceEntity = resourceEntity;
+	}
+
+	/**
+	 * Gets the element entity.
+	 *
+	 * @return the element entity
+	 */
+	public ElementEntity getElementEntity() {
+		return elementEntity;
+	}
+
+	/**
+	 * Sets the element entity.
+	 *
+	 * @param elementEntity the new element entity
+	 */
+	public void setElementEntity(ElementEntity elementEntity) {
+		this.elementEntity = elementEntity;
+	}
+	
 }

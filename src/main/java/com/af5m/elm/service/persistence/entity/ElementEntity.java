@@ -7,17 +7,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
- * The Class MessageTypeEntity.
+ * The Class ElementEntity.
+ * Possible name could be "Message", "Error", "Alert", or any category the implementation wants to use.
  */
 @Entity
-@Table(name = TableConstants.T_MESSAGE_TYPE)
+@Table(name = TableConstants.T_ELEMENT)
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = TableConstants.C_UUID, referencedColumnName = TableConstants.BASE_ENTITY_ID)
-public class MessageTypeEntity extends BaseEntity {
+public class ElementEntity extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
-	private boolean isVisable;
+	private String description;
 	
 	/**
 	 * Gets the name.
@@ -36,22 +37,22 @@ public class MessageTypeEntity extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
-	 * Checks if is visable.
+	 * Gets the description.
 	 *
-	 * @return true, if is visable
+	 * @return the description
 	 */
-	public boolean isVisable() {
-		return isVisable;
+	public String getDescription() {
+		return description;
 	}
-	
+
 	/**
-	 * Sets the visable.
+	 * Sets the description.
 	 *
-	 * @param isVisable the new visable
+	 * @param description the new description
 	 */
-	public void setVisable(boolean isVisable) {
-		this.isVisable = isVisable;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-}
+}	

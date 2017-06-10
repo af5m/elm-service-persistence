@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.af5m.elm.service.persistence.entity.OrganizationEntity;
+import com.af5m.elm.service.persistence.entity.BundleEntity;
 
 /**
- * The Interface OrganizationRepository.
+ * The Interface BundleRepository.
  */
 @Repository
-public interface OrganizationRepository extends CrudRepository<OrganizationEntity, UUID> {
+public interface BundleRepository extends CrudRepository<BundleEntity, UUID> {
 	
 	/**
 	 * Find all.
@@ -21,7 +21,7 @@ public interface OrganizationRepository extends CrudRepository<OrganizationEntit
 	 * @param pagable the pagable
 	 * @return the page
 	 */
-	Page<OrganizationEntity> findAll(Pageable pagable);
+	Page<BundleEntity> findAll(Pageable pagable);
 	
 	
 	/**
@@ -31,15 +31,15 @@ public interface OrganizationRepository extends CrudRepository<OrganizationEntit
 	 * @param pageable the pageable
 	 * @return the page
 	 */
-	Page<OrganizationEntity> findByName(String name, Pageable pageable);
+	Page<BundleEntity> findByName(String name, Pageable pageable);
 	
 	
 	/**
 	 * Find by uuid.
 	 *
 	 * @param uuid the uuid
-	 * @return the organization
+	 * @return the BundleEntity
 	 */
-	OrganizationEntity findByUuid(UUID uuid);
+	BundleEntity findByUuid(UUID uuid);
 
 }
